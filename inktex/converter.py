@@ -38,6 +38,8 @@ class Converter(object):
     """
 
     skeleton = r"""\documentclass{article}
+                \usepackage{fontspec}
+                \usepackage[math-style=ISO, partial=upright]{unicode-math}
                 %s
                 \begin{document}
                 \pagestyle{empty}
@@ -54,10 +56,8 @@ class Converter(object):
         u'inktex': u'http://www.oelerich.org/inktex'
     }.items())
 
-    compiler_pdf = 'pdflatex %s' % tex_file
+    compiler_pdf = 'xelatex %s' % tex_file
     converter_pdf = 'pdf2svg %s %s' % (pdf_file, svg_file)
-    compiler_dvi = 'latex %s' % tex_file
-    converter_dvi = 'dvisvgm -n %s' % dvi_file
 
     def add_ns(tag, ns=None):
         """Adds the namespace to an object"""
@@ -77,20 +77,6 @@ class Converter(object):
         self.effect_class = effect_class
         self.compiler = None
         self.converter = None
-
-        # try svg executables
-        try:
-            sp.call(self.compiler_dvi.split(" "),
-                            stdout=devnull, stderr=devnull)
-            sp.call(self.converter_dvi.split(" "),
-                            stdout=devnull, stderr=devnull)
-
-            self.compiler = self.compiler_dvi.split(" ")
-            self.converter = self.converter_dvi.split(" ")
-
-            return
-        except:
-            pass
 
         # try pdf executables
         try:

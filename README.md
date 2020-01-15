@@ -9,6 +9,8 @@ to try it out!
 The plugin is largely inspired by the great but somewhat outdated
 [textext](http://pav.iki.fi/software/textext/).
 
+*FORK:* This fork is modified to use XeLaTeX for unicode and font support.
+
 ## Requirements
 
 You need to have installed...
@@ -16,7 +18,7 @@ You need to have installed...
   * Python2 > 2.5
   * python-lxml
   * python-gtk2
-  * pdf2svg or dvisvgm (the latter is shipped with texlive!)
+  * pdf2svg
 
 ## Installation
 
@@ -28,7 +30,7 @@ You need to have installed...
 
 ### Windows
 
-Not yet supported.
+Not supported.
 
 ## Usage
 
